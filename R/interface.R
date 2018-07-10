@@ -7,7 +7,7 @@
 #'
 #'@export
 calibrateSlope <- function(count, popn, p_cd, pcc, gamma_relation, lb, ub) {
-  target <- makeTarget(count = count, popn = popn)
+  target <- makeTarget(count = count, popn = popn, p_cd = p_cd)
   mass <- makeNormalizedGamma(p_cd = p_cd, pcc = pcc, gamma_relation = gamma_relation, lb = lb, ub = ub)
   calibrateSlopeInternal(target = target, mass = mass, lb = lb, ub = ub)
 }

@@ -3,7 +3,7 @@
 #'@param count Total number of events among the given population
 #'@param popn Total number of persons in the given population
 
-makeTarget <- function(count, popn) {
+makeTarget <- function(count, popn, p_cd) {
   if(count <= 0) stop("Count must be strictly positive.")
   if(popn <= 0) stop("Population must be strictly positive.")
   count / (p_cd * popn)
