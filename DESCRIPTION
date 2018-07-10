@@ -1,0 +1,20 @@
+Package: cisurwac
+Type: Package
+Title: CISUR's Wholly-Attributable Calibrators
+Version: 0.1.0
+Authors@R:
+  person(
+    "Sam",
+    "Churchill",
+    email = "meadowschurchill@gmail.com", 
+    role = c("aut", "cre")
+  )
+Description: 
+    Simple interface to calibrate loglinear slopes, conditional probabilities,
+    and harm distribution for conditions wholly attributable to alcohol.
+Imports:
+  nloptr
+RoxygenNote: 6.0.1
+License: MIT probably
+Encoding: UTF-8
+LazyData: true
