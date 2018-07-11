@@ -4,7 +4,8 @@
 \alias{calibrateHarmDistribution}
 \title{Calibrate a harm distribution function}
 \usage{
-calibrateHarmDistribution(count, popn, p_cd, pcc, gamma_relation, lb, ub)
+calibrateHarmDistribution(count, popn, p_cd, pcc, gamma_relation, lb, ub,
+  threshold)
 }
 \arguments{
 \item{count}{Total number of events among the given population}
@@ -19,9 +20,11 @@ calibrateHarmDistribution(count, popn, p_cd, pcc, gamma_relation, lb, ub)
 gamma distribution that governs alcohol consumption.  By Kehoe, use 1.171 for
 male populations and 1.258 for female populations.}
 
-\item{lb}{lower bound of consumption at which condition occurs}
+\item{lb}{lower bound of consumption}
 
 \item{ub}{upper bound of consumption}
+
+\item{threshold}{lower bound of consumption at which condition occurs}
 }
 \description{
 Calibrate a harm distribution function

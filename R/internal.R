@@ -38,20 +38,19 @@ makeNormalizedGamma <- function(p_cd, pcc, gamma_relation, lb, ub) {
 #'
 #'
 
-makeConditionalProbability <- function(slope, lb) {
-  function(x) exp(pmax(0, slope*(x-lb)))-1
+makeConditionalProbability <- function(slope, threshold) {
+  function(x) exp(pmax(0, slope*(x-threshold)))-1
 }
 
 #' Factory for a harm distribution function
 #'
 #'
 
-makeHarmDistribution <- function(mass, risk, lb, ub, rtarget) {
-  function(x) rtarget * makeIntegrator(mass %prod% risk, lb, ub)(x)
+makeHarmDistribution <- function(mass, risk, lb, ub, target) {
+  function(x) makeIntegrator(mass %prod% risk, lb, ub)(x) / target
 }
 
 #' Factory for integrators
-#' @export
 makeIntegrator <- function(f, lb, ub) {
   integrate_up_to <- function(to) {
     if(to <= lb) to = lb
@@ -71,7 +70,6 @@ makeIntegrator <- function(f, lb, ub) {
 #'@param f,g function that takes a single argument and produces a value that is
 #'a valid argument for the `*` function
 #'
-#' @export
 makeProduct <- function(f, g) {
   function(x) f(x) * g(x)
 }
@@ -83,7 +81,6 @@ makeProduct <- function(f, g) {
 #'@describeIn makeProduct
 #'
 #'@inheritParams makeProduct
-#' @export
 `%prod%` <- function(f,g) makeProduct(f,g)
 
 
@@ -117,18 +114,17 @@ makeProduct <- function(f, g) {
 #'
 #'@param target Observed incidence to calibrate against
 #'@param mass population exposure mass function to calibrate against
-#'@param lb lower bound of consumption at which condition occurs
+#'@param threshold lower bound of consumption at which condition occurs
 #'@param ub upper bound of consumption
 #'
 #'@return slope of loglinear conditional probability mass function for risk as a
 #'result of exposure
 #'
-#' @export
-calibrateSlopeInternal <- function(target, mass, lb, ub) {
+calibrateSlopeInternal <- function(target, mass, threshold, ub) {
   if(is.na(target) | target <= 0) return(0)
 
-  integrand <- function(k) function(x) mass(x) * (exp(pmax(0, k*(x-lb)))-1)
-  estimate <- function(k) integrate(integrand(k), lb, ub)$value
+  integrand <- function(k) function(x) mass(x) * (exp(pmax(0, k*(x-threshold)))-1)
+  estimate <- function(k) integrate(integrand(k), threshold, ub)$value
   error <- function(k) abs(estimate(k) - target)
 
   nloptr::nloptr(

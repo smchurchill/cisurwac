@@ -4,7 +4,7 @@
 \alias{makeHarmDistribution}
 \title{Factory for a harm distribution function}
 \usage{
-makeHarmDistribution(mass, risk, lb, ub, rtarget)
+makeHarmDistribution(mass, risk, lb, ub, target)
 }
 \description{
 Factory for a harm distribution function

@@ -4,7 +4,7 @@
 \alias{makeConditionalProbability}
 \title{Factory for loglinear conditional probability functions}
 \usage{
-makeConditionalProbability(slope, lb)
+makeConditionalProbability(slope, threshold)
 }
 \description{
 Factory for loglinear conditional probability functions

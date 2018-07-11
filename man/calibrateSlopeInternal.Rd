@@ -5,9 +5,9 @@
 \alias{calibrateSlopeInternal}
 \title{Calibrate a loglinear slope}
 \usage{
-calibrateSlope(count, popn, p_cd, pcc, gamma_relation, lb, ub)
+calibrateSlope(count, popn, p_cd, pcc, gamma_relation, lb, ub, threshold)
 
-calibrateSlopeInternal(target, mass, lb, ub)
+calibrateSlopeInternal(target, mass, threshold, ub)
 }
 \arguments{
 \item{count}{Total number of events among the given population}
@@ -22,9 +22,11 @@ calibrateSlopeInternal(target, mass, lb, ub)
 gamma distribution that governs alcohol consumption.  By Kehoe, use 1.171 for
 male populations and 1.258 for female populations.}
 
-\item{lb}{lower bound of consumption at which condition occurs}
+\item{lb}{lower bound of consumption}
 
 \item{ub}{upper bound of consumption}
+
+\item{threshold}{lower bound of consumption at which condition occurs}
 
 \item{target}{Observed incidence to calibrate against}
 

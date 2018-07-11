@@ -2,9 +2,10 @@
 % Please edit documentation in R/interface.R
 \name{calibrateConditionalProbability}
 \alias{calibrateConditionalProbability}
-\title{Calibrate a conditional probability density function}
+\title{Calibrate a cumulative conditional probability function}
 \usage{
-calibrateConditionalProbability(count, popn, p_cd, pcc, gamma_relation, lb, ub)
+calibrateConditionalProbability(count, popn, p_cd, pcc, gamma_relation, lb, ub,
+  threshold)
 }
 \arguments{
 \item{count}{Total number of events among the given population}
@@ -19,10 +20,12 @@ calibrateConditionalProbability(count, popn, p_cd, pcc, gamma_relation, lb, ub)
 gamma distribution that governs alcohol consumption.  By Kehoe, use 1.171 for
 male populations and 1.258 for female populations.}
 
-\item{lb}{lower bound of consumption at which condition occurs}
+\item{lb}{lower bound of consumption}
 
 \item{ub}{upper bound of consumption}
+
+\item{threshold}{lower bound of consumption at which condition occurs}
 }
 \description{
-Calibrate a conditional probability density function
+Calibrate a cumulative conditional probability function
 }
