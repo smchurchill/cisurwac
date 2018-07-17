@@ -47,8 +47,8 @@ makeConditionalProbability <- function(slope, threshold) {
 
 makeHarmDensity <- function(mass = mass, risk = risk, lb = lb, ub = ub, target = target) {
   function(x) {
-    if(x > ub) x = ub
-    if(x < lb) x = lb
+    x[x > ub] = ub
+    x[x < lb] = lb
     (mass %prod% risk)(x) / target
   }
 }
