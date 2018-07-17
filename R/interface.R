@@ -24,15 +24,28 @@ calibrateConditionalProbability <- function(count, popn, p_cd, pcc, gamma_relati
   makeConditionalProbability(slope = slope, threshold = threshold)
 }
 
-#' Calibrate a harm distribution function
+#' Calibrate a harm density function
 #'
 #'@inheritParams calibrateSlope
 #'
 #'@export
-calibrateHarmDistribution <- function(count, popn, p_cd, pcc, gamma_relation, lb, ub, threshold) {
+calibrateHarmDensity <- function(count, popn, p_cd, pcc, gamma_relation, lb, ub, threshold) {
   target <- makeTarget(count = count, popn = popn, p_cd = p_cd)
   mass <- makeNormalizedGamma(p_cd = p_cd, pcc = pcc, gamma_relation = gamma_relation, lb = lb, ub = ub)
   slope <- calibrateSlopeInternal(target = target, mass = mass, threshold = threshold, ub = ub)
   risk <- makeConditionalProbability(slope = slope, threshold = threshold)
-  makeHarmDistribution(mass = mass, risk = risk, lb = lb, ub = ub, target = target)
+  makeHarmDensity(mass = mass, risk = risk, lb = lb, ub = ub, target = target)
+}
+
+#' Calibrate a cumulative harm distribution function
+#'
+#'@inheritParams calibrateSlope
+#'
+#'@export
+calibrateCumulativeHarmDistribution <- function(count, popn, p_cd, pcc, gamma_relation, lb, ub, threshold) {
+  target <- makeTarget(count = count, popn = popn, p_cd = p_cd)
+  mass <- makeNormalizedGamma(p_cd = p_cd, pcc = pcc, gamma_relation = gamma_relation, lb = lb, ub = ub)
+  slope <- calibrateSlopeInternal(target = target, mass = mass, threshold = threshold, ub = ub)
+  risk <- makeConditionalProbability(slope = slope, threshold = threshold)
+  makeCumulativeHarmDistribution(mass = mass, risk = risk, lb = lb, ub = ub, target = target)
 }

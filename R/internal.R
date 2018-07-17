@@ -42,11 +42,21 @@ makeConditionalProbability <- function(slope, threshold) {
   function(x) exp(pmax(0, slope*(x-threshold)))-1
 }
 
-#' Factory for a harm distribution function
-#'
+#' Factory for a harm density function
 #'
 
-makeHarmDistribution <- function(mass, risk, lb, ub, target) {
+makeHarmDensity <- function(mass = mass, risk = risk, lb = lb, ub = ub, target = target) {
+  function(x) {
+    if(x > ub) x = ub
+    if(x < lb) x = lb
+    (mass %prod% risk)(x) / target
+  }
+}
+
+#' Factory for a harm distribution function
+#'
+
+makeCumulativeHarmDistribution <- function(mass, risk, lb, ub, target) {
   function(x) makeIntegrator(mass %prod% risk, lb, ub)(x) / target
 }
 
