@@ -1,3 +1,6 @@
+## cisurwac - Tools for risk calibration of conditions wholly attributable to alcohol
+## Copyright (C) 2018 Canadian Institute for Substance Use Research
+
 #' Calibrate a loglinear slope
 #'
 #'@describeIn calibrateSlopeInternal

@@ -1,3 +1,6 @@
+## cisurwac - Tools for risk calibration of conditions wholly attributable to alcohol
+## Copyright (C) 2018 Canadian Institute for Substance Use Research
+
 #' Make a target incidence for loglinear slope calibration
 #'
 #'@param count Total number of events among the given population
